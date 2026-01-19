@@ -51,7 +51,7 @@ const orderSchema = new mongoose.Schema({
   quantity: { type: Number, required: true },
   company_name: { type: String, required: true },
   company_address: { type: String, required: true },
-  current_status: { type: String, default: 'confirmed' },
+  current_status: { type: String, default: 'pickup_scheduled' },
   status_history: [{
     status: String,
     timestamp: Date,
@@ -228,9 +228,9 @@ app.post('/api/orders', authenticateToken, [
     const order = new Order({
       tracking_id,
       ...req.body,
-      current_status: 'order_confirmed',
+      current_status: 'pickup_scheduled',
       status_history: [{
-        status: 'order_confirmed',
+        status: 'pickup_scheduled',
         timestamp: now,
         note: 'Order created'
       }],
