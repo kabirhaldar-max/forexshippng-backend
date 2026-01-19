@@ -228,9 +228,9 @@ app.post('/api/orders', authenticateToken, [
     const order = new Order({
       tracking_id,
       ...req.body,
-      current_status: 'confirmed',
+      current_status: 'order_confirmed',
       status_history: [{
-        status: 'confirmed',
+        status: 'order_confirmed',
         timestamp: now,
         note: 'Order created'
       }],
