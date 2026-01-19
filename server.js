@@ -45,7 +45,7 @@ const orderSchema = new mongoose.Schema({
   tracking_id: { type: String, required: true, unique: true },
   customer_name: { type: String, required: true },
   customer_email: { type: String, required: true },
-  customer_phone: { type: String, required: true },
+  customer_state: { type: String, required: true },
   customer_address: { type: String, required: true },
   product_name: { type: String, required: true },
   quantity: { type: Number, required: true },
@@ -209,7 +209,7 @@ app.get('/api/admin/me', authenticateToken, async (req, res) => {
 app.post('/api/orders', authenticateToken, [
   body('customer_name').notEmpty(),
   body('customer_email').isEmail(),
-  body('customer_phone').notEmpty(),
+  body('customer_state').notEmpty(),
   body('customer_address').notEmpty(),
   body('product_name').notEmpty(),
   body('quantity').isInt({ min: 1 }),
